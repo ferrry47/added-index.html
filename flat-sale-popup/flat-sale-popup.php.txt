@@ -1,0 +1,32 @@
+<?php
+/*
+Plugin Name: 30% Flat Sale Popup
+Description: Displays a vibrant 30% flat sale popup on your WordPress site.
+Version: 1.0
+Author: Your Name
+*/
+
+// Enqueue CSS and JavaScript
+function fsp_enqueue_scripts() {
+    // Enqueue CSS
+    wp_enqueue_style('fsp-style', plugins_url('style.css', __FILE__));
+
+    // Enqueue JavaScript
+    wp_enqueue_script('fsp-script', plugins_url('script.js', __FILE__), array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'fsp_enqueue_scripts');
+
+// Add HTML for the popup
+function fsp_display_popup() {
+    ?>
+    <div id="fsp-popup" class="fsp-popup">
+        <div class="fsp-popup-content">
+            <span class="fsp-close">&times;</span>
+            <h2>FLAT 30% OFF!</h2>
+            <p>Hurry up! Grab this amazing offer before it's gone.</p>
+            <button class="fsp-button">Shop Now</button>
+        </div>
+    </div>
+    <?php
+}
+add_action('wp_footer', 'fsp_display_popup');
